@@ -5,8 +5,11 @@ import { FaUmbrellaBeach } from "react-icons/fa";
 import { TbCancel } from "react-icons/tb";
 import EmployeeLineChart from "./EmployeeLineChart";
 import EmployeePieChart from "./EmployeePieChart";
+import employeeData from "../Data/Data";
 
 const Dashboard = () => {
+  const empData = employeeData;
+
   return (
     <div className="w-full h-full flex flex-col gap-y-8">
       <EmployeeLineChart />
@@ -15,7 +18,20 @@ const Dashboard = () => {
           <span className=" font-bold">Employees Status</span>
 
           <div className=" flex items-center justify-between gap-4 flex-wrap  [&>*]:border [&>*]:border-black/15 [&>*]:w-[180px] [&>*]:h-[120px] [&>*]:px-3 [&>*]:py-4 [&>*]:flex [&>*]:flex-col [&>*]:items-start [&>*]:justify-center [&>*]:gap-y-2 [&>*]:text-sm [&>*]:font-bold [&>*]:rounded-md">
-            <div>
+            {empData &&
+              empData.map((data, index) => {
+                const Icon = data.icon;
+                return (
+                  <div key={index}>
+                    <span className="text-3xl">
+                      <Icon />
+                    </span>
+                    <span>{data.label}</span>
+                    <span className="text-xs font-normal">{data.data}</span>
+                  </div>
+                );
+              })}
+            {/* <div>
               <span className="text-3xl">
                 <FaRegCalendarCheck />
               </span>
@@ -42,7 +58,7 @@ const Dashboard = () => {
               </span>
               <span>Leave requests</span>
               <span className="text-xs font-normal">8</span>
-            </div>
+            </div> */}
           </div>
         </div>
 

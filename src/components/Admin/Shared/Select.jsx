@@ -1,11 +1,14 @@
 import React from "react";
 
-const Select = ({ label, options }) => {
+const Select = ({ label, options, value, name, handleInputChange }) => {
   return (
     <div className="relative basis-[calc(50%-0.5rem)]">
       <select
         required
         defaultValue=""
+        value={value}
+        name={name}
+        onChange={handleInputChange}
         className="
       peer w-full h-14
       appearance-none bg-white
@@ -17,8 +20,12 @@ const Select = ({ label, options }) => {
     "
       >
         <option value="" disabled hidden></option>
-        {options.map((option) => {
-          return <option value={option}>{option}</option>;
+        {options.map((option, index) => {
+          return (
+            <option value={option} key={index}>
+              {option}
+            </option>
+          );
         })}
       </select>
 

@@ -1,10 +1,13 @@
 import React from "react";
 
-const Input = ({ type, ID, label }) => {
+const Input = ({ type, ID, label, handleInputChange, name, value }) => {
   return (
     <div className="relative basis-[calc(50%-0.5rem)]">
       <input
         type={type}
+        name={name}
+        value={value}
+        onChange={handleInputChange}
         id={ID}
         required
         placeholder=" "

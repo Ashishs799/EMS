@@ -1,25 +1,105 @@
 import React, { useContext, useState } from "react";
 import Input from "../Shared/Input";
 import Select from "../Shared/Select";
-import { AdminContext, useAdminContext } from "../../contextApi/ContextApi";
+import { useAdminContext } from "../../contextApi/ContextApi";
 import Button from "../Shared/Button";
 
 const AddEmployee = () => {
-  const { preview, gender, departments, designations, handleImageChange } =
-    useAdminContext();
+  const {
+    preview,
+    gender,
+    departments,
+    designations,
+    handleInputChange,
+    handleImageChange,
+    newEmployee,
+    handleSubmit,
+  } = useAdminContext();
+
   return (
     <div className="w-full h-full">
-      <form action="" className="flex items-center gap-x-4 gap-y-8 flex-wrap">
-        <Input ID={"fullname"} label={"Fullname"} type={"text"} />
-        <Input ID={"email"} label={"Email"} type={"text"} />
-        <Input ID={"mobile"} label={"Mobile"} type={"text"} />
-        <Input ID={"address"} label={"Address"} type={"text"} />
-        <Input ID={"dob"} label={"Date of Birth"} type={"date"} />
-        <Select label={"Gender"} options={gender} />
-        <Select label={"Designations"} options={designations} />
-        <Select label={"Departments"} options={departments} />
-        <Input ID={"password"} label={"Password"} type={"text"} />
-        <Input ID={"repass"} label={"Re-Enter Password"} type={"text"} />
+      <form
+        action=""
+        className="flex items-center gap-x-4 gap-y-8 flex-wrap"
+        onSubmit={handleSubmit}
+      >
+        <Input
+          ID={"fullname"}
+          name="name"
+          value={newEmployee.name}
+          label={"Fullname"}
+          type={"text"}
+          handleInputChange={handleInputChange}
+        />
+        <Input
+          ID={"email"}
+          name="email"
+          value={newEmployee.email}
+          label={"Email"}
+          type={"text"}
+          handleInputChange={handleInputChange}
+        />
+        <Input
+          ID={"mobile"}
+          name="mobile"
+          value={newEmployee.mobile}
+          label={"Mobile"}
+          type={"text"}
+          handleInputChange={handleInputChange}
+        />
+        <Input
+          ID={"address"}
+          name="address"
+          value={newEmployee.address}
+          label={"Address"}
+          type={"text"}
+          handleInputChange={handleInputChange}
+        />
+        <Input
+          ID={"dob"}
+          name="dob"
+          value={newEmployee.dob}
+          label={"Date of Birth"}
+          type={"date"}
+          handleInputChange={handleInputChange}
+        />
+        <Select
+          label={"Gender"}
+          options={gender}
+          name="gender"
+          value={newEmployee.gender}
+          handleInputChange={handleInputChange}
+        />
+        <Select
+          name="designation"
+          value={newEmployee.designation}
+          label={"Designations"}
+          options={designations}
+          handleInputChange={handleInputChange}
+        />
+        <Select
+          name="department"
+          value={newEmployee.department}
+          label={"Departments"}
+          options={departments}
+          handleInputChange={handleInputChange}
+        />
+        <Input
+          name="password"
+          value={newEmployee.password}
+          ID={"password"}
+          label={"Password"}
+          type={"text"}
+          handleInputChange={handleInputChange}
+        />
+        <Input
+          name="repassword"
+          value={newEmployee.repassword}
+          ID={"repass"}
+          label={"Re-Enter Password"}
+          type={"text"}
+          handleInputChange={handleInputChange}
+        />
         <div className="w-full">
           <label
             htmlFor="image-upload"
@@ -49,7 +129,7 @@ const AddEmployee = () => {
             )}
           </div>
         </div>
-        <Button label={"Submit"} />
+        <Button label={"Submit"} submit={"submit"} />
       </form>
     </div>
   );
