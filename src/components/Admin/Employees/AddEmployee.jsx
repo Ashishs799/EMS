@@ -3,6 +3,7 @@ import Input from "../Shared/Input";
 import Select from "../Shared/Select";
 import { useAdminContext } from "../../contextApi/ContextApi";
 import Button from "../Shared/Button";
+import Heading from "../Shared/Heading";
 
 const AddEmployee = () => {
   const {
@@ -17,7 +18,8 @@ const AddEmployee = () => {
   } = useAdminContext();
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full ">
+      <Heading heading={"Add Employee"} />
       <form
         action=""
         className="flex items-center gap-x-4 gap-y-8 flex-wrap"
@@ -129,7 +131,7 @@ const AddEmployee = () => {
             )}
           </div>
         </div>
-        <Button label={"Submit"} submit={"submit"} />
+        <Button label={"Submit"} type={"submit"} />
       </form>
     </div>
   );

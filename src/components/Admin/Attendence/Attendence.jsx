@@ -1,8 +1,10 @@
 import React from "react";
+import Heading from "../Shared/Heading";
 
 const Attendence = () => {
   return (
     <div className="w-full h-full">
+      <Heading heading={"Attendence"}/>
       <table>
         <thead>
           <th>

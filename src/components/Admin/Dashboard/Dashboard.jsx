@@ -1,8 +1,4 @@
 import React from "react";
-import { FaRegCalendarCheck } from "react-icons/fa";
-import { FaRegClock } from "react-icons/fa";
-import { FaUmbrellaBeach } from "react-icons/fa";
-import { TbCancel } from "react-icons/tb";
 import EmployeeLineChart from "./EmployeeLineChart";
 import EmployeePieChart from "./EmployeePieChart";
 import employeeData from "../Data/Data";
@@ -31,34 +27,6 @@ const Dashboard = () => {
                   </div>
                 );
               })}
-            {/* <div>
-              <span className="text-3xl">
-                <FaRegCalendarCheck />
-              </span>
-              <span>Attendence</span>
-              <span className="text-xs font-normal">30</span>
-            </div>
-            <div>
-              <span className="text-3xl">
-                <FaRegClock />
-              </span>
-              <span>Late coming</span>
-              <span className="text-xs font-normal">33</span>
-            </div>
-            <div>
-              <span className="text-3xl">
-                <FaUmbrellaBeach />
-              </span>
-              <span>Absent</span>
-              <span className="text-xs font-normal">2</span>
-            </div>
-            <div>
-              <span className="text-3xl">
-                <TbCancel />
-              </span>
-              <span>Leave requests</span>
-              <span className="text-xs font-normal">8</span>
-            </div> */}
           </div>
         </div>
 
