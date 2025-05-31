@@ -1,19 +1,16 @@
 import React from "react";
 import Heading from "../Shared/Heading";
+import { attendanceColumns, attendanceData } from "../Data/attendanceData";
+import CustomTable from "../Shared/Table";
 
 const Attendence = () => {
   return (
     <div className="w-full h-full">
-      <Heading heading={"Attendence"}/>
-      <table>
-        <thead>
-          <th>
-            <td>Name</td>
-            <td>Employee ID</td>
-            <td>Attendence</td>
-          </th>
-        </thead>
-      </table>
+      <Heading heading={"Attendence"} />
+      <CustomTable
+        tableColumns={attendanceColumns}
+        tableValues={attendanceData}
+      />
     </div>
   );
 };
