@@ -8,22 +8,23 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-// Sample data: employee distribution by department
-const data = [
-  { name: "Male", value: 15 },
-  { name: "Female", value: 12 },
-];
-
-// Define custom colors
-const COLORS = ["#1CB5E0", "#F6339A"];
+import { useAdminContext } from "../../contextApi/ContextApi";
 
 const EmployeePieChart = () => {
+  const { empData } = useAdminContext();
+  console.log(empData);
+  const female = empData.filter((fem) => fem.gender === "Female") || [];
+  console.log("female", female);
+  const data = [
+    { name: "Male", value: empData.length - female.length },
+    { name: "Female", value: female.length },
+  ];
+  const COLORS = ["#1CB5E0", "#F6339A"];
   return (
     <div className="py-4 rounded-md border border-black/15 w-[400px]">
       <div className="flex w-full  items-center px-4 justify-between">
         <span className="font-bold">Total Employees</span>
-        <span className="text-2xl font-bold">27</span>
+        <span className="text-2xl font-bold">{empData?.length || 0}</span>
       </div>
       <ResponsiveContainer height={300}>
         <PieChart>

@@ -58,10 +58,10 @@ const AddEmployee = () => {
           handleInputChange={handleInputChange}
         />
         <Input
-          ID={"dob"}
-          name="dob"
-          value={newEmployee.dob}
-          label={"Date of Birth"}
+          ID={"jd"}
+          name="jd"
+          value={newEmployee.jd}
+          label={"Joining Date"}
           type={"date"}
           handleInputChange={handleInputChange}
         />

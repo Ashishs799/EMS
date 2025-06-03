@@ -1,9 +1,10 @@
-import { useState, createContext, useContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 export const AdminContext = createContext();
 const AdminContextProvider = ({ children }) => {
   const [preview, setPreview] = useState(null);
+  const [empData, setEmpData] = useState([]);
   const gender = ["Male", "Female"];
   const departments = [
     "Development",
@@ -36,7 +37,7 @@ const AdminContextProvider = ({ children }) => {
     email: "",
     mobile: "",
     address: "",
-    dob: "",
+    jd: "",
     gender: "",
     designation: "",
     department: "",
@@ -52,16 +53,23 @@ const AdminContextProvider = ({ children }) => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setPreview(imageUrl);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64Image = reader.result; // e.g. "data:image/jpeg;base64,..."
 
-      // Also store image file or URL in newEmployee state
-      setNewEmployee((prevDetails) => ({
-        ...prevDetails,
-        image: imageUrl,
-      }));
+        setPreview(base64Image); // for immediate UI preview
+
+        setNewEmployee((prevDetails) => ({
+          ...prevDetails,
+          image: base64Image, // store base64 instead of blob URL
+        }));
+
+        localStorage.setItem("employeeImage", base64Image); // save to localStorage
+      };
+      reader.readAsDataURL(file);
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     //checking if all the fields are filled
@@ -70,7 +78,7 @@ const AdminContextProvider = ({ children }) => {
       !newEmployee.address ||
       !newEmployee.mobile ||
       !newEmployee.email ||
-      !newEmployee.dob ||
+      !newEmployee.jd ||
       !newEmployee.gender ||
       !newEmployee.department ||
       !newEmployee.designation ||
@@ -93,6 +101,8 @@ const AdminContextProvider = ({ children }) => {
     localStorage.setItem("employees", JSON.stringify(updatedEmployees));
     1;
     console.log("Employee Details are ", newEmployee);
+    setEmpData(updatedEmployees);
+
     // reset to default
     setNewEmployee({
       id: uuidv4(),
@@ -100,7 +110,7 @@ const AdminContextProvider = ({ children }) => {
       email: "",
       mobile: "",
       address: "",
-      dob: "",
+      jd: "",
       gender: "",
       designation: "",
       department: "",
@@ -110,6 +120,12 @@ const AdminContextProvider = ({ children }) => {
     });
     setPreview(null);
   };
+  useEffect(() => {
+    const empInfo = localStorage.getItem("employees");
+    if (empInfo) {
+      setEmpData(JSON.parse(empInfo));
+    }
+  }, []);
 
   const data = {
     preview,
@@ -120,6 +136,7 @@ const AdminContextProvider = ({ children }) => {
     handleInputChange,
     handleImageChange,
     handleSubmit,
+    empData,
   };
   return <AdminContext.Provider value={data}>{children}</AdminContext.Provider>;
 };

@@ -7,7 +7,7 @@ const Sidebar = ({ content, setContent }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const sideBarData = SidebarLinks;
   return (
-    <div className="w-[400px] bg-white py-8 px-8">
+    <div className="w-[400px]  py-8 px-8">
       <div className="bg-gradient-to-r from-[#1CB5E0] to-[#000851] text-white h-full py-12 rounded-2xl px-4">
         <div className="flex flex-col items-center gap-y-1">
           <div className="img w-20 h-20 rounded-full overflow-hidden ">
@@ -24,7 +24,7 @@ const Sidebar = ({ content, setContent }) => {
               return (
                 <div
                   key={link.content_}
-                  className="w-full  [&>*]:transition [&>*]:delay-75 [&>*]:duration-200 [&>*]:ease-in [&>*]:py-2 [&>*]:px-2 "
+                  className="w-full  [&>*]:transition [&>*]:delay-75 [&>*]:duration-200 [&>*]:ease-in [&>*]:py-2 [&>*]:px-2 [&>*]:cursor-pointer"
                 >
                   <div
                     onClick={() => {

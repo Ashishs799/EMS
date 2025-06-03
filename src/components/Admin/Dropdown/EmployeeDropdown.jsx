@@ -7,13 +7,13 @@ const EmployeeDropdown = ({ content, setContent }) => {
         onClick={() => setContent("allemployees")}
         className={content === "allemployees" ? "active_red" : ""}
       >
-        All Employee
+        - All Employee
       </button>
       <button
         onClick={() => setContent("addemployee")}
         className={content === "addemployee" ? "active_red" : ""}
       >
-        Add Employee
+        - Add Employee
       </button>
     </div>
   );

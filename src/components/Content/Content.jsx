@@ -28,7 +28,7 @@ const Content = ({ content, setContent }) => {
     }
   }
   return (
-    <div className="w-full h-full  px-12 py-8">
+    <div className="w-full h-full pr-8 py-4">
       <div className=" h-full rounded-2xl">{showContent()}</div>
     </div>
   );
