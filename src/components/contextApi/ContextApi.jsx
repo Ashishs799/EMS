@@ -13,6 +13,8 @@ const AdminContextProvider = ({ children }) => {
     "HR",
     "SEO",
     "Management",
+    "Marketing", 
+    "Business",
   ];
   const designations = [
     "Software Engineer",

@@ -4,6 +4,7 @@ import { MdEditSquare } from "react-icons/md";
 import { PiCoffeeFill } from "react-icons/pi";
 import { FaTasks } from "react-icons/fa";
 import { MdAnnouncement } from "react-icons/md";
+import { FaPeopleCarry } from "react-icons/fa";
 
 const SidebarLinks = [
   {
@@ -25,6 +26,11 @@ const SidebarLinks = [
     icon: PiCoffeeFill,
     label: "Leave Requests",
     content_: "leaves",
+  },
+  {
+    icon: FaPeopleCarry,
+    label: "Interviews",
+    content_: "interview",
   },
   {
     icon: FaTasks,

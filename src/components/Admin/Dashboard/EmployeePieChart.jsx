@@ -21,7 +21,7 @@ const EmployeePieChart = () => {
   ];
   const COLORS = ["#1CB5E0", "#F6339A"];
   return (
-    <div className="py-4 rounded-md border border-black/15 w-[400px]">
+    <div className="py-4 rounded-md border border-black/15 w-[350px]">
       <div className="flex w-full  items-center px-4 justify-between">
         <span className="font-bold">Total Employees</span>
         <span className="text-2xl font-bold">{empData?.length || 0}</span>

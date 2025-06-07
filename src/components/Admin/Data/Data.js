@@ -2,6 +2,7 @@ import { FaRegCalendarCheck } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { FaUmbrellaBeach } from "react-icons/fa";
 import { TbCancel } from "react-icons/tb";
+
 const employeeStatus = [
   {
     icon: FaRegCalendarCheck,

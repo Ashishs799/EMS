@@ -6,6 +6,7 @@ import Assign_tasks from "../Admin/Tasks/Assign_tasks";
 import Announcements from "../Admin/Announcements/Announcements";
 import Leave_Requests from "../Admin/Leave Requests/Leave_Requests";
 import AddEmployee from "../Admin/Employees/AddEmployee";
+import Interviews from "../Admin/Interview/Interviews";
 
 const Content = ({ content, setContent }) => {
   console.log("Content is ", content);
@@ -19,6 +20,8 @@ const Content = ({ content, setContent }) => {
         return <Attendence />;
       case "leaves":
         return <Leave_Requests />;
+      case "interview":
+        return <Interviews />;
       case "tasks":
         return <Assign_tasks />;
       case "announcement":
