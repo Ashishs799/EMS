@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export const InterviewContext = createContext();
 
 const InterviewContextProvider = ({ children }) => {
-  const [interviews, setInterviews] = useState({
+  const [interview, setInterview] = useState({
     inteviewId: uuidv4(),
     interviewee_name: "",
     job_position: "",
@@ -15,27 +15,49 @@ const InterviewContextProvider = ({ children }) => {
     interview_time: "",
     interview_type: "",
   });
+  const [interviewList, setInterviewList] = useState(() => {
+    return JSON.parse(localStorage.getItem("interviews")) || [];
+  });
+  const [showInterviewCard, setShowInterviewCard] = useState(false);
+
+  const showInterviewModal = () => {
+    setShowInterviewCard(true);
+  };
+  const hideInterviewModal = () => {
+    setShowInterviewCard(false);
+  };
 
   const handleInterviewChange = (e) => {
     const { name, value } = e.target;
-    setInterviews((prevInterview) => ({ ...prevInterview, [name]: value }));
+    setInterview((prevInterview) => ({ ...prevInterview, [name]: value }));
   };
 
   const addInterview = (e) => {
     e.preventDefault();
-    const existingInterviews =
-      JSON.parse(localStorage.getItem("interviews")) || [];
-    const updatedInterview = [...existingInterviews, interviews];
-    localStorage.setItem("interviews", JSON.stringify(updatedInterview));
-    setInterviews(updatedInterview);
+    const updatedList = [...interviewList, interview];
+    localStorage.setItem("interviews", JSON.stringify(updatedList));
+    setInterviewList(updatedList);
+    setInterview({
+      inteviewId: uuidv4(),
+      interviewee_name: "",
+      job_position: "",
+      job_department: "",
+      interview_phn: "",
+      interviewee_email: "",
+      interview_date: "",
+      interview_time: "",
+      interview_type: "",
+    });
     alert("Interview set !!");
-    console.log("Interviews, ", interviews);
   };
 
   const data = {
-    interviews,
+    interviewList,
     handleInterviewChange,
     addInterview,
+    showInterviewCard,
+    showInterviewModal,
+    hideInterviewModal,
   };
   return (
     <InterviewContext.Provider value={data}>

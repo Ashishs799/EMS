@@ -9,9 +9,9 @@ import { useInterviewContext } from "../../contextApi/InterviewContext";
 
 const SetInterview = ({ hide }) => {
   const InterviewType = ["HR Round", "Technical Round", "Final Round"];
-  const { interviews, handleInterviewChange, addInterview } =
+  const { interviewList, handleInterviewChange, addInterview } =
     useInterviewContext();
-  console.log(interviews.time);
+  console.log(interviewList.time);
   return (
     <div className="w-[850px] px-4 py-4 bg-white border border-gray-300 relative rounded-sm">
       <div className="flex items-center justify-between">
@@ -27,7 +27,7 @@ const SetInterview = ({ hide }) => {
           <Input
             ID={"interviewee"}
             name="interviewee_name"
-            value={interviews.interviewee_name || ""}
+            value={interviewList.interviewee_name}
             label={"Fullname"}
             type={"text"}
             handleInputChange={handleInterviewChange}
@@ -35,7 +35,7 @@ const SetInterview = ({ hide }) => {
           <Input
             ID={"job_position"}
             name="job_position"
-            value={interviews.job_position || ""}
+            value={interviewList.job_position}
             label={"Job Position"}
             type={"text"}
             handleInputChange={handleInterviewChange}
@@ -43,7 +43,7 @@ const SetInterview = ({ hide }) => {
           <Input
             ID={"job_department"}
             name="job_department"
-            value={interviews.job_department || ""}
+            value={interviewList.job_department}
             label={"Department"}
             type={"text"}
             handleInputChange={handleInterviewChange}
@@ -51,7 +51,7 @@ const SetInterview = ({ hide }) => {
           <Input
             ID={"interview_phn"}
             name="interview_phn"
-            value={interviews.interview_phn || ""}
+            value={interviewList.interview_phn}
             label={"Phone"}
             type={"text"}
             handleInputChange={handleInterviewChange}
@@ -59,7 +59,7 @@ const SetInterview = ({ hide }) => {
           <Input
             ID={"interviewee_email"}
             name="interviewee_email"
-            value={interviews.interviewee_email || ""}
+            value={interviewList.interviewee_email}
             label={"Email"}
             type={"text"}
             handleInputChange={handleInterviewChange}
@@ -67,7 +67,7 @@ const SetInterview = ({ hide }) => {
           <Input
             ID={"interview_date"}
             name="interview_date"
-            value={interviews.interview_date || ""}
+            value={interviewList.interview_date}
             label={"Interview Date"}
             type={"date"}
             handleInputChange={handleInterviewChange}
@@ -75,14 +75,14 @@ const SetInterview = ({ hide }) => {
           <Input
             ID={"interview_time"}
             name="interview_time"
-            value={interviews.interview_time || ""}
+            value={interviewList.interview_time}
             label={"Time"}
             type={"text"}
             handleInputChange={handleInterviewChange}
           />
           <Select
             name="interview_type"
-            value={interviews.interview_type || ""}
+            value={interviewList.interview_type}
             label={"Interview Type"}
             options={InterviewType}
             handleInputChange={handleInterviewChange}

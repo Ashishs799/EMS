@@ -6,7 +6,7 @@ import { IoIosAddCircle } from "react-icons/io";
 
 const CustomTable = ({ tableColumns, tableValues, show }) => {
   return (
-    <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+    <div className=" relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
       <div className="bg-[#1cb5e022] py-2 pr-4 flex items-center justify-between">
         <Search />
         <IoIosAddCircle
@@ -32,11 +32,11 @@ const CustomTable = ({ tableColumns, tableValues, show }) => {
         </thead>
         <tbody>
           {tableValues.map((row, index) => (
-            <tr key={index} className="hover:bg-slate-50">
+            <tr key={index} className="hover:bg-slate-50 break-words">
               {tableColumns.map((col, colIndex) => (
                 <td
                   key={col.key}
-                  className={`p-4 text-sm ${
+                  className={`p-4 text-xs break-words  whitespace-normal  ${
                     colIndex === 0 ? "font-bold" : "font-normal"
                   }`}
                 >

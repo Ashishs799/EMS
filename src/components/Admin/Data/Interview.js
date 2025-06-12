@@ -14,11 +14,14 @@ const formattedDate = `${year}-${month}-${day}`;
 console.log(formattedDate); // e.g., "2025-06-04"
 
 export const InterviewTableColumns = [
-  { key: "name", label: "Name" },
-  { key: "position", label: "Position" },
-  { key: "department", label: "Department" },
-  { key: "date", label: "Date" },
-  { key: "time", label: "Time" },
+  { key: "interviewee_name", label: "Name" },
+  { key: "job_position", label: "Position" },
+  { key: "job_department", label: "Department" },
+  { key: "interview_phn", label: "Phone" },
+  { key: "interviewee_email", label: "Email" },
+  { key: "interview_date", label: "Date" },
+  { key: "interview_time", label: "Time" },
+  { key: "interview_type", label: "Type" },
 ];
 
 export const interviewValues = [

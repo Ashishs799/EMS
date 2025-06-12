@@ -3,48 +3,52 @@ import { v4 as uuidv4 } from "uuid";
 export const AnnouncementContext = createContext();
 
 const AnnouncementContextProvider = ({ children }) => {
-  const [announcements, setAnnouncements] = useState({
+  const [announcement, setAnnouncement] = useState({
     id: uuidv4(),
     announcement: "",
     category: "",
     subject: "",
-    date: Date.now(),
+    date: new Date().toDateString(),
     createdBy: "Ashish Lohani",
     role: "HR Manager",
   });
+
+  const [announcements, setAnnouncements] = useState(() => {
+    const stored = localStorage.getItem("announcements");
+    return stored ? JSON.parse(stored) : [];
+  });
+
   const handleAnnouncementChange = (e) => {
     const { name, value } = e.target;
-    setAnnouncements((prevAnnouncements) => ({
-      ...prevAnnouncements,
+    setAnnouncement((prevAnnouncement) => ({
+      ...prevAnnouncement,
       [name]: value,
     }));
   };
   const handleAnnouncement = (e) => {
     e.preventDefault();
-    const newAnnouncement = { ...announcements };
-    const existingAnnouncements =
-      JSON.parse(localStorage.getItem("announcements")) || [];
+    const newAnnouncement = { ...announcement };
+    const updated = [...announcements, newAnnouncement];
 
-    const updatedAnnouncements = [...existingAnnouncements, newAnnouncement];
+    localStorage.setItem("announcements", JSON.stringify(updated));
+    setAnnouncements(updated);
 
-    // Correctly store in localStorage
-    localStorage.setItem("announcements", JSON.stringify(updatedAnnouncements));
     alert("Announcements posted !!");
-    // Optionally reset the form after submission
-    // setAnnouncements({
-    //   id: uuidv4(),
-    //   announcement: "",
-    //   category: "",
-    //   subject: "",
-    //   date: Date.now(),
-    //   createdBy: "Ashish Lohani",
-    //   role: "HR Manager",
-    // });
 
-    console.log("Announcement is:", newAnnouncement);
+    // Optionally reset the form
+    setAnnouncement({
+      id: uuidv4(),
+      announcement: "",
+      category: "",
+      subject: "",
+      date: new Date().toDateString(),
+      createdBy: "Ashish Lohani",
+      role: "HR Manager",
+    });
   };
 
   const value = {
+    announcement,
     announcements,
     handleAnnouncement,
     handleAnnouncementChange,

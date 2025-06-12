@@ -3,26 +3,27 @@ import { InterviewTableColumns, interviewValues } from "../Data/Interview";
 import Heading from "../Shared/Heading";
 import CustomTable from "../Shared/Table";
 import SetInterview from "./SetInterview";
+import { useInterviewContext } from "../../contextApi/InterviewContext";
 const Interviews = () => {
-  const [showInterviewCard, setShowInterviewCard] = useState(false);
+  const {
+    interviewList,
+    showInterviewCard,
+    showInterviewModal,
+    hideInterviewModal,
+  } = useInterviewContext();
+  console.log("Interview ho hai ", interviewList);
 
-  const showInterviewModal = () => {
-    setShowInterviewCard(true);
-  };
-  const hideInterviewModal = () => {
-    setShowInterviewCard(false);
-  };
   return (
     <div className="w-full h-full relative">
       <Heading heading={"Interviews"} />
       <CustomTable
         tableColumns={InterviewTableColumns}
-        tableValues={interviewValues}
-         show={showInterviewModal}
+        tableValues={interviewList}
+        show={showInterviewModal}
       />
       {showInterviewCard ? (
         <div className="absolute top-60 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <SetInterview hide={hideInterviewModal}/>
+          <SetInterview hide={hideInterviewModal} />
         </div>
       ) : (
         ""

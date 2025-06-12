@@ -5,12 +5,16 @@ import Input from "../Shared/Input";
 import Select from "../Shared/Select";
 import Heading from "../Shared/Heading";
 
-const Announcements = () => {
-  const { announcements, handleAnnouncement, handleAnnouncementChange } =
-    useAnnouncementContext();
+const announcement = () => {
+  const {
+    announcement,
+    announcements,
+    handleAnnouncement,
+    handleAnnouncementChange,
+  } = useAnnouncementContext();
   useEffect(() => {
-    console.log("Announcments hruuuu", announcements);
-  }, [announcements]);
+    console.log("Announcments hruuuu", announcement);
+  }, [announcement]);
   const categories = ["Holiday", "Events", "Meetings"];
   return (
     <div className=" rounded-2xl">
@@ -20,7 +24,7 @@ const Announcements = () => {
           <select
             name="category"
             id="category"
-            value={announcements.category}
+            value={announcement.category}
             onChange={handleAnnouncementChange}
             className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700 px-4"
             defaultValue=""
@@ -39,12 +43,12 @@ const Announcements = () => {
           label={"Subject"}
           type={"text"}
           name={"subject"}
-          value={announcements.subject}
+          value={announcement.subject}
           handleInputChange={handleAnnouncementChange}
         />
         <textarea
           name="announcement"
-          value={announcements.announcement}
+          value={announcement.announcement}
           onChange={handleAnnouncementChange}
           id=""
           placeholder="Write an announcement..."
@@ -52,8 +56,30 @@ const Announcements = () => {
         ></textarea>
         <Button type={"submit"} label={"Announce"} />
       </form>
+      <div className=" my-8 w-full">
+        <span className="font-bold py-4 block">History</span>
+        <div className="w-full flex flex-wrap gap-4">
+          {announcements &&
+            announcements.map((data) => {
+              return (
+                <div
+                  className="w-[49%] rounded-2xl border border-2-black p-4 flex flex-col items-center relative"
+                  key={data.id}
+                >
+                  <span className=" font-bold">{data.subject}</span>
+                  <p className="py-2">{data.announcement}</p>
+                  <div className="text-end w-full px-4  absolute  bottom-0">
+                    <span className="text-xs italic">
+                      posted on {data.date}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Announcements;
+export default announcement;

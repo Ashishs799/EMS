@@ -32,7 +32,7 @@ const Employees = () => {
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <div className="w- w-full py-2 flex justify-between px-8 text-2xl [&>*]:flex [&>*]:flex-col [&>*]:items-center ">
+                <div className=" w-full py-2 flex justify-between px-8 text-2xl [&>*]:flex [&>*]:flex-col [&>*]:items-center ">
                   <span>
                     <VscChecklist />
                     <span className="text-[16px]">{formattedNumber}</span>
