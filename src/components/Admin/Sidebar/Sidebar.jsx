@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import pfp from "../../../assets/pp.jpg";
 import SidebarLinks from "../Data/SidebarLinks";
+import { EmployeeNavlinks } from "../../Employee/Data/EmployeeNavlinks";
 import EmployeeDropdown from "../Dropdown/EmployeeDropdown";
+import { useLoginUserContext } from "../../contextApi/Loginuser";
 
 const Sidebar = ({ content, setContent }) => {
+  // const { user } = useLoginUserContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const sideBarData = SidebarLinks;
+  // const sideBarData = SidebarLinks;
+
+  const loggedInUser = localStorage.getItem("UserLogin");
+
+  const sideBarData =
+    loggedInUser === "Admin" ? SidebarLinks : EmployeeNavlinks;
+
+  console.log("Aile loggin user chai ", loggedInUser);
   return (
     <div className="w-[400px] py-8 ">
       <div className="fixed w-[280px] pl-8">

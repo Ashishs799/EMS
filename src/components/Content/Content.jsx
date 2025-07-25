@@ -7,8 +7,14 @@ import Announcements from "../Admin/Announcements/Announcements";
 import Leave_Requests from "../Admin/Leave Requests/Leave_Requests";
 import AddEmployee from "../Admin/Employees/AddEmployee";
 import Interviews from "../Admin/Interview/Interviews";
+import { MyTeam } from "../Employee/MyTeam/MyTeam";
+import MyAttendence from "../Employee/MyAttendence/MyAttendence";
+import ReqLeave from "../Employee/Request_leave/ReqLeave";
+import MyTasks from "../Employee/MyTasks/MyTasks";
+import EmpDashboard from "../Employee/Dashboard/EmpDashboard";
 
 const Content = ({ content, setContent }) => {
+  const loggedInUser = localStorage.getItem("UserLogin");
   console.log("Content is ", content);
   function showContent() {
     switch (content) {
@@ -30,9 +36,27 @@ const Content = ({ content, setContent }) => {
         return <Dashboard />;
     }
   }
+  function showEmpContent() {
+    switch (content) {
+      case "myteam":
+        return <MyTeam />;
+
+      case "myattendence":
+        return <MyAttendence />;
+      case "leavereq":
+        return <ReqLeave />;
+      case "mytasks":
+        return <MyTasks />;
+
+      default:
+        return <EmpDashboard />;
+    }
+  }
   return (
     <div className="w-full h-full pr-8 py-4 ">
-      <div className=" h-full rounded-2xl ">{showContent()}</div>
+      <div className=" h-full rounded-2xl ">
+        {loggedInUser === "Admin" ? showContent() : showEmpContent()}
+      </div>
     </div>
   );
 };
